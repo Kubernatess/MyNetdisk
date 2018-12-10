@@ -2,6 +2,11 @@
 body{
 	font-family: Arial;	 
 }
+
+/*guide*/
+#guide{
+	margin-top: 100px;	
+}
 .navbar-default{
 	background-color:#FFF;
 	border:none;
@@ -32,10 +37,19 @@ body{
 .navbar-default .navbar-toggle:hover {
 	background-color: #ff84fd
 }
-#guide{
-	margin-top: 100px;	
-}
+
+/*show*/
 #show{
 	margin-top: 50px;
-	
+}
+#show .container a{
+	text-decoration: none;
+	text-align: center;
+	font-size: 20px;
+	color: #666;
+	line-height: 50px;
+}
+
+#show .container a:hover{
+	background-color:#33b7b22e;	
 }

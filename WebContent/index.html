@@ -4,9 +4,11 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
+
+
 <title>index</title>
-<link rel="stylesheet" href="css/bootstrap.min.css"/>
-<link rel="stylesheet" href="css/bootstrap-index.css" />
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/bootstrap-index.css" rel="stylesheet" />
 </head>
 <body>
 <!--导航-->
@@ -49,7 +51,7 @@
 <section id="guide">
 <div class="container">
 <div class="row">
-<span class="col-md-2"><button class="btn btn-primary btn-lg">上传</button></span>
+<span class="col-md-2"><form method="post" action=""><label for="upload" class="btn btn-primary btn-lg">上传</label><input type="file" name="upload" id="upload" multiple style="display:none" /></form></span>
 <span class="col-md-2"><button class="btn btn-info btn-lg">下载</button></span>
 <span class="col-md-4 navbar-right"><form class="form-inline">
 <div class="input-group">
@@ -61,18 +63,19 @@
 </div>
 </section>
 
+
 <section id="show">
 <div class="container">
-<span class="col-md-2"><img src="images/folder.jpg" class="img-responsive"><p>Hadoop</p></span>
-<span class="col-md-2"><img src="images/folder.jpg" class="img-responsive"><p>Hadoop</p></span>
-<span class="col-md-2"><img src="images/folder.jpg" class="img-responsive"><p>Hadoop</p></span>
-<span class="col-md-2"><img src="images/folder.jpg" class="img-responsive"><p>Hadoop</p></span>
-<span class="col-md-2"><img src="images/folder.jpg" class="img-responsive"><p>Hadoop</p></span>
-<span class="col-md-2"><img src="images/folder.jpg" class="img-responsive"><p>Hadoop</p></span>
+<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
 </div>
 </section>
 
-<script src="js/jquery-3.3.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
