@@ -11,7 +11,14 @@
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/bootstrap-index.css" />
 <script>
-var xhr=new XMLHttpRequest();
+
+window.onload=function(){
+	var btn_upload=document.myform.myfile;
+	btn_upload.onchange=function(){
+		document.myform.submit();
+	}
+}
+	
 
 </script>
 </head>
@@ -57,10 +64,9 @@ var xhr=new XMLHttpRequest();
 <div class="container">
 <div class="row">
 <span class="col-md-2">
-	<form method="post" action="${pageContext.request.contextPath}/upload" enctype="multipart/form-data">
+	<form method="post" name="myform" action="${pageContext.request.contextPath}/upload" enctype="multipart/form-data">
 	<label for="upload" class="btn btn-primary btn-lg">上传</label>
 	<input type="file" name="myfile" id="upload" multiple style="display:none" />
-	<input type="submit">
 	</form>
 </span>
 <span class="col-md-2"><button class="btn btn-info btn-lg">下载</button></span>

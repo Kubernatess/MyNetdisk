@@ -67,10 +67,13 @@ public class UploadServlet extends HttpServlet {
 					}
 					in.close();
 					os.close();
+					
+					
 				}
 			}
+			//文件上传完毕,重定向到首页
+			response.sendRedirect("index.jsp");
 		} catch (FileUploadException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

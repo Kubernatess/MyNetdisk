@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>register</title>
+<link href="css/register.css" rel="stylesheet" type="text/css">
+<script>
+function changeColor(){
+	var favcolor=document.getElementById('favcolor');
+	document.body.style.backgroundColor=favcolor.value;
+}
+</script>
+</head>
+
+<body>
+<form action="register.php" method="GET" validate>
+  <fieldset>
+    <legend>Register</legend>
+    <p>用户名*</p><input name="username" type="text" required />
+    <p>密码*</p><input name="password" type="password" required />
+    <p>确认密码*</p><input name="confirm" type="password" required />
+    <p>电话/手机号*</p><input name="telephone" type="text" placeholder="选填" />
+    <p>邮箱*</p><input name="email" type="email" placeholder="选填" />
+    <br/><br/>
+    <input type="submit" name=submit value="提交"/><br/><br/>
+  </fieldset>
+</form>
+
+<input type='color' id='favcolor' value='#fff' onchange="changeColor();"><label id='changeSkin' for="favcolor">更改皮肤</label>
+</body>
+</html>

@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-	<title>login</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>login</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <style>
 #input-verify{
 	outline: #999 solid thick;
@@ -18,9 +21,12 @@
 	height: 50px;
 	width: auto;
 }
+font{
+	display:none;
+}
 </style>
 </head>
-
+<body>
 <body>
 <div class="dowebok">
 	<div class="container-login100">
@@ -41,6 +47,8 @@
 						<i class="fa fa-user-circle" aria-hidden="true"></i>
 					</span>
 				</div>
+				
+				<font color="red">当前用户不存在</font><br/>
 
 				<div class="wrap-input100 validate-input">
 					<input class="input100" type="password" name="pass" placeholder="密码">
@@ -49,8 +57,11 @@
 						<i class="fa fa-lock" aria-hidden="true"></i>
 					</span>
 				</div>
+				<font color="red">密码错误</font><br/>
 				
 				<input type="text" id="input-verify" placeholder="输入验证码" >
+                
+                <font color="red">验证码有误</font>
                 
                 <img src="/MyNetdisk/Verification" width=100 id="verification" onclick="changeVerification();">
 				

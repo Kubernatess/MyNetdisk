@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+fieldset {
+	background-color: #F90;
+	width: 300px;
+	margin: 0 auto;
+	border-radius: 10px;
+	border: none;
+}
+input {
+	width: 95%;
+	height: 20px;
+}
+legend {
+	font-size: 30px;
+	color: #00F;
+}
+input[type="submit"]{
+	color: #FFF;
+	background-color: #F00;
+	border: none;
+	width: 100px;
+	border-radius: 3px;
+	height:30px;
+}
+
+body {
+	background-color: #999;	
+}
+#favcolor {
+	height: 25pt;
+	width: 75pt;
+	position: fixed;
+	top: 0pt;
+	right: 0pt;
+}
+#changeSkin {
+	font-family: Arial;
+	font-size: 20pt;
+	position: fixed;
+	top: 0px;
+	right: 110px;
+}
