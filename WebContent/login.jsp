@@ -23,6 +23,7 @@
 }
 font{
 	display:none;
+	color:red;
 }
 </style>
 </head>
@@ -48,7 +49,7 @@ font{
 					</span>
 				</div>
 				
-				<font color="red">当前用户不存在</font><br/>
+				<font>当前用户不存在</font><br/>
 
 				<div class="wrap-input100 validate-input">
 					<input class="input100" type="password" name="pass" placeholder="密码">
@@ -57,11 +58,11 @@ font{
 						<i class="fa fa-lock" aria-hidden="true"></i>
 					</span>
 				</div>
-				<font color="red">密码错误</font><br/>
+				<font>密码错误</font><br/>
 				
 				<input type="text" id="input-verify" placeholder="输入验证码" >
                 
-                <font color="red">验证码有误</font>
+                <font>验证码有误</font>
                 
                 <img src="/MyNetdisk/Verification" width=100 id="verification" onclick="changeVerification();">
 				
@@ -77,8 +78,8 @@ font{
 					</a>
 				</div>
 
-				<div class="text-center p-t-136">
-					<a class="txt2" href="https://www.helloweba.net/" target="_blank">
+				<div class="text-center p-t-100">
+					<a class="txt2" href="/MyNetdisk/register.html" target="_blank">
 							还没有账号？立即注册
 						<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 					</a>
