@@ -14,7 +14,7 @@ legend {
 	font-size: 30px;
 	color: #00F;
 }
-#submit{
+#submission{
 	color: #FFF;
 	background-color: #F00;
 	border: none;
@@ -24,6 +24,10 @@ legend {
 }
 body {
 	background-color: #999;	
+}
+font{
+	display:none;
+	color:red;
 }
 #favcolor {
 	height: 25pt;

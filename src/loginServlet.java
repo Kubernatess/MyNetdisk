@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import db.Data;
-
 /**
- * Servlet implementation class registerServlet
+ * Servlet implementation class loginServlet
  */
-@WebServlet("/registerServlet")
-public class registerServlet extends HttpServlet {
+@WebServlet("/loginServlet")
+public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public registerServlet() {
+    public loginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,11 +26,8 @@ public class registerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username=request.getParameter("username");
-		String password=request.getParameter("password");
-		String telephone=request.getParameter("telephone");
-		String email=request.getParameter("email");
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

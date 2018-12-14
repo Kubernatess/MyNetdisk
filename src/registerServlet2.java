@@ -12,14 +12,14 @@ import db.Data;
 /**
  * Servlet implementation class registerServlet
  */
-@WebServlet("/registerServlet")
-public class registerServlet extends HttpServlet {
+@WebServlet("/registerServlet2")
+public class registerServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public registerServlet() {
+    public registerServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,9 +29,11 @@ public class registerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username=request.getParameter("username");
-		String password=request.getParameter("password");
-		String telephone=request.getParameter("telephone");
-		String email=request.getParameter("email");
+		if(Data.isExistUsername(username)){
+			response.getWriter().println(true);
+		}else
+			response.getWriter().println(false);
+		
 		
 	}
 

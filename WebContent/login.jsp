@@ -26,6 +26,49 @@ font{
 	color:red;
 }
 </style>
+<script>
+window.onload=function(){
+	//切换验证码图片
+	var verification=document.getElementById('verification');
+	verification.onclick=function(){
+		verification.src="/MyNetdisk/Verification?time="+new Date().getTime();
+	};
+	
+	//获取账号、密码、登陆按钮对象
+	var oBtn=document.getElementById('login');
+	var oUsername=document.getElementById('username');
+	var oPassword=document.getElementById('pass');
+	var oVerification=document.getElementById('input-verify');
+	var arrFont=document.getElementsByTagName('font');
+	//获取对象的值
+	var username=oUsername.value;
+	var password=oPassword.value;
+	var verification=oVerification.value;
+	
+	//点击提交按钮后
+	oBtn.onclick=function(){
+		//如果用户名为空,显示font标签 否则不显示
+		if(username=="")
+			arrFont[0].style.display="block";
+		else 
+			arrFont[0].style.display="none";
+		
+		//如果密码为空,显示font标签 否则不显示
+		if(password=="")
+			arrFont[2].style.display="block";
+		else 
+			arrFont[2].style.display="none";
+		
+		//如果验证码为空,显示font标签 否则不显示
+		if(verification=="")
+			arrFont[4].style.display="block";
+		else 
+			arrFont[4].style.display="none";
+		
+	};
+	
+};
+</script>
 </head>
 <body>
 <body>
@@ -42,34 +85,35 @@ font{
 				</span>
 
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="email" placeholder="用户名">
+					<input class="input100" type="text" name="username" id="username" placeholder="用户名">
 					<span class="focus-input100"></span>
 					<span class="symbol-input100">
 						<i class="fa fa-user-circle" aria-hidden="true"></i>
 					</span>
 				</div>
 				
-				<font>当前用户不存在</font><br/>
+				<font>用户名不能为空</font>
+				<font>当前用户不存在</font>
 
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="password" name="pass" placeholder="密码">
+					<input class="input100" type="password" name="pass" id="pass" placeholder="密码">
 					<span class="focus-input100"></span>
 					<span class="symbol-input100">
 						<i class="fa fa-lock" aria-hidden="true"></i>
 					</span>
 				</div>
-				<font>密码错误</font><br/>
+				<font>密码不能为空</font>
+				<font>密码错误</font>
 				
 				<input type="text" id="input-verify" placeholder="输入验证码" >
                 
+                <font>验证码不能为空</font>
                 <font>验证码有误</font>
                 
-                <img src="/MyNetdisk/Verification" width=100 id="verification" onclick="changeVerification();">
+                <img src="/MyNetdisk/Verification" width=100 id="verification" >
 				
 				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">
-						登陆
-					</button>
+					<input type="button" name="login" id="login" value="登陆" class="login100-form-btn">
 				</div>
 
 				<div class="text-center p-t-12">
@@ -78,7 +122,7 @@ font{
 					</a>
 				</div>
 
-				<div class="text-center p-t-100">
+				<div class="text-center p-t-130">
 					<a class="txt2" href="/MyNetdisk/register.html" target="_blank">
 							还没有账号？立即注册
 						<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
@@ -88,11 +132,6 @@ font{
 		</div>
 	</div>
 </div>
-<script>
-function changeVerification(){
-	var verification=document.getElementById('verification');
-	verification.src="/MyNetdisk/Verification?time="+new Date().getTime();
-}
-</script>
+
 </body>
 </html>

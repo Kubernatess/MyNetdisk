@@ -11,7 +11,7 @@ window.onload=function(){
 	var oUsername=document.getElementById('username');
 	var oPassword=document.getElementById('password');	
 	var oComfirm=document.getElementById('comfirm');	
-	var oBtn=document.getElementById('submit');
+	var oBtn=document.getElementById('submission');
 	var username;
 	var password;
 	var comfirm;
@@ -25,15 +25,15 @@ window.onload=function(){
 		username=oUsername.value;
 		password=oPassword.value;
 		comfirm=oComfirm.value;
-		//若用户名不为空
+		//若用户名不为空,隐藏font标签
 		if(username!=""){
 			arrFont[0].style.display="none";
 		}
-		//若密码不为空
+		//若密码不为空,隐藏font标签
 		if(password!=""){
 			arrFont[2].style.display="none";
 		}
-		//若确认密码不为空
+		//若确认密码不为空,隐藏font标签
 		if(comfirm!=""){
 			arrFont[4].style.display="none";
 		}
@@ -50,7 +50,7 @@ window.onload=function(){
 				}
 			}
 		};
-		xhr.open("get","/MyNetdisk/registerServlet?username="+username);
+		xhr.open("get","/MyNetdisk/registerServlet2?username="+username);
 		xhr.send(null);
 		
 		//密码至少6位
@@ -70,6 +70,10 @@ window.onload=function(){
 	
 	//提交按钮前先判断是否还有未完成的表单项
 	oBtn.onclick=function(){
+		//获取所有对象的值
+		username=oUsername.value;
+		password=oPassword.value;
+		comfirm=oComfirm.value;
 		if(username==""&&(arrFont[1].style.display=="none"))
 			arrFont[0].style.display="block";
 		else 
@@ -94,9 +98,9 @@ window.onload=function(){
 			}
 		}
 		//如果i==6表明所有验证通过
-		if(i==6){
+		if((i==6)&&(username!="")&&(password!="")&&(comfirm!="")){
 			var choose=confirm("确定注册新用户?");
-			if(choose==true){
+			if(choose){
 				document.registerForm.submit();
 			}
 		}

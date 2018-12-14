@@ -5,16 +5,10 @@
 <title>register</title>
 <link href="css/register.css" rel="stylesheet" type="text/css">
 <script src="js/register.js"></script>
-<style>
-font{
-	display:none;
-	color:red;
-}
-</style>
 </head>
 
 <body>
-<form action="#" method="GET" name="registerForm" validate>
+<form action="/MyNetdisk/registerServlet" method="GET" name="registerForm" validate>
   <fieldset>
     <legend>Register</legend>
     <p>用户名*</p><input name="username" id="username" type="text" required />
@@ -29,7 +23,7 @@ font{
     <p>电话/手机号*</p><input name="telephone" type="text" placeholder="选填" />
     <p>邮箱*</p><input name="email" type="email" placeholder="选填" />
     <br/><br/>
-    <button name="submit" id="submit">提交</button><br/><br/>
+    <input type="button" name="submission" id="submission" value="提交" ><br/><br/>
   </fieldset>
 </form>
 
