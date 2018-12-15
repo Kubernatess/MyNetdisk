@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+#input-verify{
+	outline: #999 solid thick;
+	height: 25px;
+	margin-bottom: 10px;
+}
+#verification{
+	display: inline;
+	height: 50px;
+	width: auto;
+}
+font{
+	display:none;
+	color:red;
+}

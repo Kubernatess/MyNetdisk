@@ -62,6 +62,25 @@ public class Data {
 		return false;
 	}
 	
-	//判断验证码输入是否正确
+	//把注册表单数据全部写入数据库
+	public static int Insert(String username,String password,String telephone,String email){
+		try {
+			con=DBUtils.getCon();
+			String sql = "insert into user values(?,?,?,?)";
+			ps=con.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ps.setString(3, telephone);
+			ps.setString(4, email);
+			int i=ps.executeUpdate();
+			ps.close();
+			con.close();
+			return i;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 
 }

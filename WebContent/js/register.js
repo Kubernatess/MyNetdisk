@@ -52,7 +52,7 @@ window.onload=function(){
 				}
 			}
 		};
-		xhr.open("get","/MyNetdisk/usernameServlet?username="+username);
+		xhr.open("get","/MyNetdisk/UsernameServlet?username="+username);
 		xhr.send(null);
 		
 		//密码至少6位

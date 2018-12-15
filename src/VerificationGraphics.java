@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Verification
@@ -34,6 +35,11 @@ public class VerificationGraphics extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//创建session对象
+		HttpSession session=request.getSession();
+		//创建字符数组,用于保存验证码
+		char character[]=new char[4];
+		
 		int width=120;
 		int height=40;
 		//获取画布对象
@@ -64,6 +70,7 @@ public class VerificationGraphics extends HttpServlet {
 			
 			int index=random.nextInt(words.length());
 			char ch=words.charAt(index);
+			character[i]=ch;
 			//画到画布上去
 			g.drawString(ch+"", x, y);
 			g.rotate(-radian,x,y);
@@ -79,6 +86,12 @@ public class VerificationGraphics extends HttpServlet {
 			y2=random.nextInt(height);
 			g.drawLine(x1, y1, x2, y2);
 		}
+		
+		//将字符数组转换成字符串
+		String str=new String(character);
+		//将字符串保存到session域对象中
+		session.setAttribute("verification", str);
+		
 		//释放资源
 		g.dispose();
 		//把内存中的图片输出到客户端上

@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author ปฦฯþมุ  E-mail: example@aliyun.com
@@ -18,8 +19,17 @@ public class VerificationServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		HttpSession session=request.getSession();
+		String verification=(String) session.getAttribute("verification");
+		String verification_input=request.getParameter("verification");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		if(verification.equalsIgnoreCase(verification_input)){
+			response.getWriter().write("true");
+		}
+		else
+			response.getWriter().write("false");
+		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
