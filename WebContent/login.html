@@ -28,7 +28,7 @@ font{
 function changeVerification(){
 	var verification=document.getElementById('verification');
 	verification.onclick=function(){
-		verification.src="/MyNetdisk/Verification?time="+new Date().getTime();
+		verification.src="/MyNetdisk/VerificationGraphics?time="+new Date().getTime();
 	};
 }
 
@@ -40,11 +40,11 @@ window.onload=function(){
 	var oVerification=document.getElementById('input-verify');
 	var arrFont=document.getElementsByTagName('font');
 	//获取对象的值
-	var username;
-	var password;
-	var verification;
+	var username=oUsername.value;
+	var password=oPassword.value;
+	var verification=oVerification.value;
 	
-	oUsername.onblur=oUsername.onblur=oVerification.onblur=function(){
+	oUsername.onblur=oPassword.onblur=oVerification.onblur=function(){
 		//获取对象的值
 		username=oUsername.value;
 		password=oPassword.value;
@@ -56,6 +56,10 @@ window.onload=function(){
 		if(verification!="")
 			arrFont[4].style.display="none";
 		
+		arrFont[1].style.display="none";
+		arrFont[3].style.display="none";
+		arrFont[5].style.display="none";
+		
 	};
 	
 	//点击提交按钮后
@@ -65,26 +69,73 @@ window.onload=function(){
 		password=oPassword.value;
 		verification=oVerification.value;
 		//如果用户名为空,显示font标签 否则不显示
-		if(username=="")
+		if((username=="")&&(arrFont[1].style.display=="none")){
 			arrFont[0].style.display="block";
-		else 
-			arrFont[0].style.display="none";
+			return;
+		}
 		
 		//如果密码为空,显示font标签 否则不显示
-		if(password=="")
+		if((password=="")&&(arrFont[3].style.display=="none")){
 			arrFont[2].style.display="block";
-		else 
-			arrFont[2].style.display="none";
-		
+			return;
+		}	
 		//如果验证码为空,显示font标签 否则不显示
-		if(verification=="")
+		if((verification=="")&&(arrFont[5].style.display=="none")){
 			arrFont[4].style.display="block";
-		else 
-			arrFont[4].style.display="none";
+			return;
+		}			
+	
+		//Ajax判断账号名是否存在
+		if(username!=""){
+			var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4){
+					if((eval(xhr.responseText)==0)&&(arrFont[0].style.display=="none")){
+						//如果用户名不存在,显示font标签
+						arrFont[1].style.display="block";
+						return;
+					}
+					else{
+						//用户名存在,隐藏font标签
+						arrFont[1].style.display="none";
+					}
+				}
+			};
+			xhr.open("get","/MyNetdisk/UsernameServlet?username="+username);
+			xhr.send(null);
+		}
+		
+		
+		//Ajax判断密码是否正确
+		if(password!=""){
+			var xhr2=new XMLHttpRequest();
+			xhr2.onreadystatechange=function(){
+				if(xhr2.readyState==4){
+					if((eval(xhr2.responseText)==0)&&(arrFont[2].style.display=="none")){
+						//如果密码不正确,显示font标签
+						arrFont[3].style.display="block";
+						return;
+					}
+					else{
+						//密码正确,隐藏font标签
+						arrFont[3].style.display="none";
+					}
+				}
+			};
+			xhr2.open("get","/MyNetdisk/confirmServlet?username="+username+"&password="+password);
+			xhr2.send(null);
+		}
+		
+		
+		//Ajax判断验证码是否正确
+		var xhr3=new XMLHttpRequest();
+		xhr3.onreadystatechange=function(){
+			
+		};
+		xhr3.open("get","/MyNetdisk/VerificationServlet?username="+username+"&password="+password);
+		xhr3.send(null);
 		
 	};
-	
-	
 	
 };
 </script>
@@ -129,7 +180,7 @@ window.onload=function(){
                 <font>验证码不能为空</font>
                 <font>验证码有误</font>
                 
-                <img width=100 id="verification" src="/MyNetdisk/Verification" onclick="changeVerification();" >
+                <img width=100 id="verification" src="/MyNetdisk/VerificationGraphics" onclick="changeVerification();" >
 				
 				<div class="container-login100-form-btn">
 					<input type="button" name="login" id="login" value="登陆" class="login100-form-btn">

@@ -27,13 +27,15 @@ font{
 }
 </style>
 <script>
-window.onload=function(){
-	//切换验证码图片
+//切换验证码图片
+function changeVerification(){
 	var verification=document.getElementById('verification');
 	verification.onclick=function(){
-		verification.src="/MyNetdisk/Verification?time="+new Date().getTime();
+		verification.src="/MyNetdisk/VerificationGraphics?time="+new Date().getTime();
 	};
-	
+}
+
+window.onload=function(){	
 	//获取账号、密码、登陆按钮对象
 	var oBtn=document.getElementById('login');
 	var oUsername=document.getElementById('username');
@@ -41,29 +43,48 @@ window.onload=function(){
 	var oVerification=document.getElementById('input-verify');
 	var arrFont=document.getElementsByTagName('font');
 	//获取对象的值
-	var username=oUsername.value;
-	var password=oPassword.value;
-	var verification=oVerification.value;
+	var username;
+	var password;
+	var verification;
+	
+	oUsername.onblur=oPassword.onblur=oVerification.onblur=function(){
+		//获取对象的值
+		username=oUsername.value;
+		password=oPassword.value;
+		verification=oVerification.value;
+		if(username!="")
+			arrFont[0].style.display="none";
+		if(password!="")
+			arrFont[2].style.display="none";
+		if(verification!="")
+			arrFont[4].style.display="none";
+	};
 	
 	//点击提交按钮后
 	oBtn.onclick=function(){
+		//获取对象的值
+		username=oUsername.value;
+		password=oPassword.value;
+		verification=oVerification.value;
 		//如果用户名为空,显示font标签 否则不显示
-		if(username=="")
+		alert(arrFont[1].style.display=="none");
+		if((username=="")&&(arrFont[1].style.display=="none")){
 			arrFont[0].style.display="block";
-		else 
-			arrFont[0].style.display="none";
+			return;
+		}
 		
 		//如果密码为空,显示font标签 否则不显示
-		if(password=="")
+		if((password=="")&&(arrFont[3].style.display=="none")){
 			arrFont[2].style.display="block";
-		else 
-			arrFont[2].style.display="none";
-		
+			return;
+		}	
+		alert(arrFont[5].style.display);
 		//如果验证码为空,显示font标签 否则不显示
-		if(verification=="")
+		if((verification=="")&&(arrFont[5].style.display=="none")){
 			arrFont[4].style.display="block";
-		else 
-			arrFont[4].style.display="none";
+			alert('d');
+			return;
+		}	
 		
 	};
 	
@@ -110,7 +131,7 @@ window.onload=function(){
                 <font>验证码不能为空</font>
                 <font>验证码有误</font>
                 
-                <img src="/MyNetdisk/Verification" width=100 id="verification" >
+                <img src="/MyNetdisk/VerificationGraphics" width=100 id="verification" onclick="changeVerification();">
 				
 				<div class="container-login100-form-btn">
 					<input type="button" name="login" id="login" value="登陆" class="login100-form-btn">

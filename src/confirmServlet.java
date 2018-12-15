@@ -1,5 +1,4 @@
 
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,40 +9,31 @@ import javax.servlet.http.HttpServletResponse;
 import db.Data;
 
 /**
- * Servlet implementation class registerServlet
+ * @author 黄晓霖  E-mail: example@aliyun.com
+ * @version 创建时间：2018年12月15日  上午11:46:19
+ * tags
  */
-@WebServlet("/registerServlet")
-public class registerServlet extends HttpServlet {
+@WebServlet("/confirmServlet")
+public class confirmServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public registerServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//获取所有表单数据
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
-		String telephone=request.getParameter("telephone");
-		String email=request.getParameter("email");
-		//把注册表单数据全部写入数据库
-		
-		
+		//判断该用户密码是否正确
+		if(Data.confirmPassword(username,password)){
+			response.getWriter().println(true);
+		}else
+			response.getWriter().println(false);
+			
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	
 }

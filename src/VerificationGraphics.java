@@ -18,14 +18,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Verification
  */
-@WebServlet("/Verification")
-public class Verification extends HttpServlet {
+@WebServlet("/VerificationGraphics")
+public class VerificationGraphics extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Verification() {
+    public VerificationGraphics() {
         super();
         // TODO Auto-generated constructor stub
     }

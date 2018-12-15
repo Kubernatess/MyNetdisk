@@ -43,14 +43,16 @@ window.onload=function(){
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4){
 				if(eval(xhr.responseText)==0){
+					//如果用户名不存在,隐藏font标签
 					arrFont[1].style.display="none";
 				}
 				else {
+					//用户名存在,显示font标签
 					arrFont[1].style.display="block";
 				}
 			}
 		};
-		xhr.open("get","/MyNetdisk/registerServlet2?username="+username);
+		xhr.open("get","/MyNetdisk/usernameServlet?username="+username);
 		xhr.send(null);
 		
 		//密码至少6位

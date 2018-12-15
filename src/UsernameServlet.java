@@ -12,14 +12,14 @@ import db.Data;
 /**
  * Servlet implementation class registerServlet
  */
-@WebServlet("/registerServlet2")
-public class registerServlet2 extends HttpServlet {
+@WebServlet("/UsernameServlet")
+public class UsernameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public registerServlet2() {
+    public UsernameServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,6 @@ public class registerServlet2 extends HttpServlet {
 			response.getWriter().println(true);
 		}else
 			response.getWriter().println(false);
-		
 		
 	}
 
