@@ -43,7 +43,7 @@ window.onload=function(){
 <div class="navbar-collapse collapse">
 <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          welcome to <span class="dropdown-toggle" data-toggle="dropdown"> Docker<span class="caret"></span></span>
+          welcome to <span class="dropdown-toggle" data-toggle="dropdown"> ${ sessionScope.username }<span class="caret"></span></span>
           <ul class="dropdown-menu">
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>

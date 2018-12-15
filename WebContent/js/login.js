@@ -38,6 +38,8 @@ window.onload=function(){
 	
 	//点击提交按钮后
 	oBtn.onclick=function(){
+		//定义一个计数器
+		var count=0;
 		//获取对象的值
 		username=oUsername.value;
 		password=oPassword.value;
@@ -72,10 +74,11 @@ window.onload=function(){
 					else{
 						//用户名存在,隐藏font标签
 						arrFont[1].style.display="none";
+						count=count+1;
 					}
 				}
 			};
-			xhr.open("get","/MyNetdisk/UsernameServlet?username="+username);
+			xhr.open("get","/MyNetdisk/UsernameServlet?username="+username,false);
 			xhr.send(null);
 		}
 		
@@ -93,10 +96,11 @@ window.onload=function(){
 					else{
 						//密码正确,隐藏font标签
 						arrFont[3].style.display="none";
+						count=count+1;
 					}
 				}
 			};
-			xhr2.open("get","/MyNetdisk/confirmServlet?username="+username+"&password="+password);
+			xhr2.open("get","/MyNetdisk/confirmServlet?username="+username+"&password="+password,false);
 			xhr2.send(null);
 		}
 		
@@ -114,23 +118,17 @@ window.onload=function(){
 					else{
 						//如果验证码正确,隐藏font标签
 						arrFont[5].style.display="none";
+						count=count+1;
 					}
 				}
 			};
-			xhr3.open("get","/MyNetdisk/VerificationServlet?verification="+verification);
+			xhr3.open("get","/MyNetdisk/VerificationServlet?verification="+verification,false);
 			xhr3.send(null);
 		}
 		
-		//提交表单前先判断是否还有"红字提示"
-		var i;
-		for(i=0;i<arrFont.length;i++){
-			if(arrFont[i].style.display=="block"){
-				break;
-			}
-		}
-		//如果i==6表明所有验证通过
-		if((i==6)&&(username!="")&&(password!="")&&(verification!="")){
-			window.location.href="index.jsp";
+		//如果count==3表明所有验证通过
+		if((count==3)&&(username!="")&&(password!="")&&(verification!="")){
+			window.location.href="/MyNetdisk/sessionServlet?username="+username;
 		}
 	};
 	
