@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<!-- 引入自己的EL函数 -->
+<%@ taglib prefix="lumlum" uri="http://www.lumlum.com/mynetdisk/EL"%>
+
+<!-- 
+	给登陆用户赋予通行证
+	若用户没有登陆而直接访问index.jsp,那么跳转到login.html
+ -->
+<c:if test="${ empty sessionScope.username }">
+	<script>window.location.href="login.html";</script>
+</c:if>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,17 +23,7 @@
 <title>index</title>
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/bootstrap-index.css" />
-<script>
-
-window.onload=function(){
-	var btn_upload=document.myform.myfile;
-	btn_upload.onchange=function(){
-		document.myform.submit();
-	}
-}
-	
-
-</script>
+<script src="js/index.js"></script>
 </head>
 <body>
 <!--导航-->
@@ -45,13 +48,13 @@ window.onload=function(){
         <li class="dropdown">
           welcome to <span class="dropdown-toggle" data-toggle="dropdown"> ${ sessionScope.username }<span class="caret"></span></span>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Account</a></li>
+            <li><a href="#">capacity</a></li>
+            <li><a href="#">feedback</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#">settig</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#" id="logout">logout</a></li>
           </ul>
         </li>
 </ul>
@@ -83,12 +86,12 @@ window.onload=function(){
 
 <section id="show">
 <div class="container">
-<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
-<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
-<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
-<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
-<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
-<a class="col-md-2"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
 </div>
 </section>
 

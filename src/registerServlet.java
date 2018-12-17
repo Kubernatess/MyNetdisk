@@ -1,5 +1,6 @@
 
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +38,12 @@ public class registerServlet extends HttpServlet {
 		//把注册表单数据全部写入数据库
 		int i=Data.Insert(username, password, telephone, email);
 		if(i==1){
-			//添加操作成功,自动登陆并跳转到index.jsp页面
+			//添加操作成功,并在/upload目录下创建属于用户自己的文件夹
+			String path=getServletContext().getRealPath("/directory");
+			File file=new File(path+"/"+username);
+			file.mkdir();
+			
+			//自动登陆并跳转到index.jsp页面
 			HttpSession session=request.getSession();
 			session.setAttribute("username", username);
 			response.sendRedirect("index.jsp");

@@ -100,6 +100,7 @@ window.onload=function(){
 					}
 				}
 			};
+			//改用post请求 为了安全性
 			xhr2.open("get","/MyNetdisk/confirmServlet?username="+username+"&password="+password,false);
 			xhr2.send(null);
 		}

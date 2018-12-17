@@ -26,13 +26,22 @@ public class sessionServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    //可能会被人非法闯入
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//设置session,保存用户名
 		String username=request.getParameter("username");
 		HttpSession session=request.getSession();
-		session.setAttribute("username", username);
-		//重定向到index.jsp
-		response.sendRedirect("index.jsp");
+		if(username!=null){	
+			session.setAttribute("username", username);
+			//重定向到index.jsp
+			response.sendRedirect("index.jsp");
+		}
+		else{
+			session.invalidate();
+			//重定向到登陆页面
+			response.sendRedirect("login.html");
+		}
+		
 	}
 
 	/**
