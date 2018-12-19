@@ -16,9 +16,8 @@ public class definedJSTL extends SimpleTagSupport {
 	
 	public void doTag() throws JspException, IOException {
 		String username=(String) pc.getSession().getAttribute("username");
-		String rootPath=pc.getServletContext().getRealPath("/directory/"+username);
-		
-		File root=new File(rootPath);
+		String rootPath=pc.getServletContext().getRealPath("/directory");
+		File root=new File(rootPath+"/"+username);
 		//创建队列
 		Queue<File> queue=new LinkedList<>();
 		//把根节点入队
@@ -34,7 +33,13 @@ public class definedJSTL extends SimpleTagSupport {
 				//拿到每一个file对象,判断file是文件还是文件夹
 				if(f.isFile()){
 					//如果是文件
-					pc.getOut().write("<a class='col-md-2' href='#'><img src='images/folder.png' class='img-responsive'><p>"+f.getName()+"</p></a>");
+					StringBuilder filename=new StringBuilder(f.getName());
+					if(filename.length()>=10){
+						int start=filename.lastIndexOf(".");
+						int end=filename.length();
+						filename.replace(start, end, "...");
+					}
+					pc.getOut().write("<a class='col-md-2' href='#'><img src='images/folder.png' title=\'"+f.getName()+"\' class='img-responsive'><p>"+filename+"</p></a>");
 				}
 				else{
 					//如果是文件夹
