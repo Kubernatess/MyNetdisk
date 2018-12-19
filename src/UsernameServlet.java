@@ -21,7 +21,14 @@ public class UsernameServlet extends HttpServlet {
      */
     public UsernameServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
+    }
+    
+    @Override
+    public void init() throws ServletException {
+    	// TODO Auto-generated method stub
+    	super.init();
+    	
     }
 
 	/**

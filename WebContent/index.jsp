@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<!-- 引入自己的EL函数 -->
-<%@ taglib prefix="lumlum" uri="http://www.lumlum.com/mynetdisk/EL"%>
+<%@ taglib prefix="my" uri="http://www.lumlum.cn/lumlum" %>
+
 
 <!-- 
 	给登陆用户赋予通行证
@@ -22,7 +22,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
 <title>index</title>
 <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/bootstrap-index.css" />
+<link rel="stylesheet" href="css/index.css" />
 <script src="js/index.js"></script>
 </head>
 <body>
@@ -86,12 +86,8 @@
 
 <section id="show">
 <div class="container">
-<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
-<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
-<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
-<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
-<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
-<a class="col-md-2" href="#"><img src="images/folder.png" class="img-responsive"><p>Hadoop</p></a>
+
+<my:fetch/>
 </div>
 </section>
 
