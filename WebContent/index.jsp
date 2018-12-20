@@ -72,7 +72,7 @@
 	<input type="file" name="myfile" id="upload" multiple style="display:none" />
 	</form>
 </span>
-<span class="col-md-2"><button class="btn btn-info btn-lg">下载</button></span>
+<span class="col-md-2"><button class="btn btn-info btn-lg" id="download">下载</button></span>
 <span class="col-md-4 navbar-right"><form class="form-inline">
 <div class="input-group">
 <input type="text" class="form-control input-lg" style="width:300px;">
@@ -84,12 +84,9 @@
 </section>
 
 
-<section id="show">
-<div class="container">
-<!-- 自定义标签:循环遍历文件名 -->
-<my:fetch/>
-</div>
-</section>
+<!-- 遍历所有文件名 -->
+<iframe name="iframe_show" src="display.jsp"  id="myiframe" scrolling="no" frameborder="0" width="100%" ></iframe>
+
 
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

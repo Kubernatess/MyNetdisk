@@ -1,4 +1,5 @@
 window.onload=function(){
+	
 	//上传文件,提交到/MyNetdisk/upload
 	var btn_upload=document.myform.myfile;
 	btn_upload.onchange=function(){
@@ -11,16 +12,20 @@ window.onload=function(){
 		window.location.href="/MyNetdisk/sessionServlet";
 	};
 	
-	//对所有图片对象设置样式
-	var imgLinks=document.getElementById("show").getElementsByClassName("container")[0].getElementsByTagName('a');
-	for(var i=0;i<imgLinks.length;i++){
-		imgLinks[i].onclick=function(){
-			this.style.background="#33b7b22e";
-		};
-		imgLinks[i].onblur=function(){
-			this.style.background="#FFF";
-		};
-	}
+	//使iframe自适应高度
+	var ifm= document.getElementById("myiframe");
+	ifm.height=document.documentElement.clientHeight;
+	
+	//下载操作
+	var download=document.getElementById("download");
+	download.onclick=function(){
+		//获取localstorage
+		var fileAbsolutePath=window.localStorage.getItem('fileAbsolutePath');
+		//对文件磁盘路径名进行编码
+		fileAbsolutePath=encodeURIComponent(fileAbsolutePath);
+		//请求下载
+		window.location.href="/MyNetdisk/DownloadServlet?fileAbsolutePath="+fileAbsolutePath;
+	};
 	
 	
 }
