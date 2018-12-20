@@ -1,9 +1,18 @@
 window.onload=function(){
 	
+	//使iframe自适应高度
+	var ifm= document.getElementById("myiframe");
+	ifm.height=document.documentElement.clientHeight;
+	
 	//上传文件,提交到/MyNetdisk/upload
 	var btn_upload=document.myform.myfile;
 	btn_upload.onchange=function(){
 		document.myform.submit();
+		//获取当前所在路径的位置
+		var currentPath=window.localStorage.getItem('currentPath');
+		//对当前文件磁盘路径名进行编码
+		currentPath=encodeURIComponent(currentPath);
+		ifm.src="/MyNetdisk/display2.jsp?currentPath="+currentPath;
 	}
 	
 	//注销方法
@@ -12,9 +21,6 @@ window.onload=function(){
 		window.location.href="/MyNetdisk/sessionServlet";
 	};
 	
-	//使iframe自适应高度
-	var ifm= document.getElementById("myiframe");
-	ifm.height=document.documentElement.clientHeight;
 	
 	//下载操作
 	var download=document.getElementById("download");

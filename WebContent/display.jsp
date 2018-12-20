@@ -27,6 +27,9 @@
 		String rootAbsolutePath=getServletContext().getRealPath("/directory");
 		//拼接 ,此时得到OpenStack的磁盘路径
 		rootAbsolutePath=rootAbsolutePath+"\\"+username;
+		//记录当前所在的路径,以便上传文件所使用
+		session.setAttribute("currentPath", rootAbsolutePath);
+		
 		//以OpenStack文件夹为根节点
 		File root=new File(rootAbsolutePath);
 		//获取file文件夹下的所有子节点

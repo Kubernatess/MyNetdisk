@@ -55,11 +55,10 @@ public class UploadServlet extends HttpServlet {
 					//获取文件的输入流
 					InputStream in=fileItem.getInputStream();
 					//向某个文件中写入
-					//向WebRoot/upload目录写入
-					String path=getServletContext().getRealPath("/directory");
-					
+					//向currentPath目录写入
+					String currentPath=(String) request.getSession().getAttribute("currentPath");
 					//获取输出流
-					OutputStream os=new FileOutputStream(path+"/"+filename);
+					OutputStream os=new FileOutputStream(currentPath+"/"+filename);
 					int len=0;
 					byte b[]=new byte[1024];
 					while((len=in.read(b))!=-1){

@@ -24,6 +24,9 @@ String rootAbsolutePath=request.getParameter("fileAbsolutePath");
 File root=new File(rootAbsolutePath);
 //如果是文件夹才执行操作
 if(root.isDirectory()){
+	//记录当前所在的目录,以便上传文件所使用
+	session.setAttribute("currentPath", rootAbsolutePath);
+	
 	//获取file文件夹下的所有子节点
 	File files[]=root.listFiles();
 			//循环遍历
