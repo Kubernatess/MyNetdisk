@@ -7,12 +7,15 @@ window.onload=function(){
 	//上传文件,提交到/MyNetdisk/upload
 	var btn_upload=document.myform.myfile;
 	btn_upload.onchange=function(){
-		document.myform.submit();
 		//获取当前所在路径的位置
 		var currentPath=window.localStorage.getItem('currentPath');
 		//对当前文件磁盘路径名进行编码
 		currentPath=encodeURIComponent(currentPath);
-		ifm.src="/MyNetdisk/display2.jsp?currentPath="+currentPath;
+		//可以考虑改用Ajax
+		ifm.src="/MyNetdisk/display.jsp?fileAbsolutePath="+currentPath;
+		
+		//改用Ajax提交表单
+		document.myform.submit();
 	}
 	
 	//注销方法
