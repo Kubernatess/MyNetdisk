@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -40,38 +41,43 @@ public class UploadServlet extends HttpServlet {
 		DiskFileItemFactory factory=new DiskFileItemFactory();
 		//创建核心解析对象
 		ServletFileUpload upload=new ServletFileUpload(factory);
+		String subDirectoryPath=null;
 		//解析request
 		try {
 			List<FileItem> list=upload.parseRequest(request);
 			//循环遍历
 			for(FileItem fileItem:list){
-				//isFormField()返回true表示普通文本项,返回false表示文件上传项
-				if(fileItem.isFormField()){
-					String name=fileItem.getFieldName();
-					String value=fileItem.getString();
-				}else{
-					//文件上传项
-					String filename=fileItem.getName();
-					//获取文件的输入流
-					InputStream in=fileItem.getInputStream();
-					//向某个文件中写入
-					//向currentPath目录写入
-					String currentPath=(String) request.getSession().getAttribute("currentPath");
-					//获取输出流
-					OutputStream os=new FileOutputStream(currentPath+"/"+filename);
-					int len=0;
-					byte b[]=new byte[1024];
-					while((len=in.read(b))!=-1){
-						os.write(b,0,len);
-					}
-					in.close();
-					os.close();
-					
-					
+				String filename=fileItem.getName();
+				//获取文件的输入流
+				InputStream in=fileItem.getInputStream();
+				//向某个文件中写入
+				//向当前目录目录写入
+				String rootAbsolutePath=(String) request.getSession().getAttribute("rootAbsolutePath");
+				subDirectoryPath=(String) request.getSession().getAttribute("subDirectoryPath");
+				String path="";
+				//如果subDirectoryPath为空,说明地址栏display.jsp没有传递参数,说明是在访问根本目录
+				if(subDirectoryPath==null){
+					//从根目录开始输出
+					path=rootAbsolutePath+"/"+filename;
 				}
+				else{
+					//从子目录开始输出
+					path=rootAbsolutePath+"/"+subDirectoryPath+"/"+filename;
+				}
+				//获取输出流
+				OutputStream os=new FileOutputStream(path);
+				int len=0;
+				byte b[]=new byte[1024];
+				while((len=in.read(b))!=-1){
+					os.write(b,0,len);
+				}
+				in.close();
+				os.close();	
 			}
 			//文件上传完毕,重定向到首页
-			response.sendRedirect("index.jsp");
+			System.out.println("UploadServlet:77--"+subDirectoryPath);
+			String encodingSubDirectoryPath=URLEncoder.encode(subDirectoryPath);
+			response.sendRedirect("index.jsp?subDirectoryPath="+encodingSubDirectoryPath);
 		} catch (FileUploadException e) {
 			e.printStackTrace();
 		}

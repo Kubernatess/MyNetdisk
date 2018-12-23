@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="my" uri="http://www.lumlum.cn/lumlum" %>
+<%@ taglib prefix="defined" uri="http://www.lumlum.cn/lumlum" %>
 
 
 <!-- 
@@ -63,16 +63,15 @@
 </nav>
 
 
-<section id="guide">
-<div class="container">
+<div id="optionGroup" class="container">
 <div class="row">
 <span class="col-md-2">
 	<form method="post" name="myform" action="${pageContext.request.contextPath}/upload" enctype="multipart/form-data">
-	<label for="upload" class="btn btn-primary btn-lg">上传</label>
+	<label for="upload" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-arrow-up"></span>上传</label>
 	<input type="file" name="myfile" id="upload" multiple style="display:none" />
 	</form>
 </span>
-<span class="col-md-2"><button class="btn btn-info btn-lg" id="download">下载</button></span>
+<span class="col-md-2"><button class="btn btn-info btn-lg" id="download"><span class="glyphicon glyphicon-download-alt"></span>下载</button></span>
 <span class="col-md-4 navbar-right"><form class="form-inline">
 <div class="input-group">
 <input type="text" class="form-control input-lg" style="width:300px;">
@@ -81,11 +80,44 @@
 </form></span>
 </div>
 </div>
+
+
+<div class="container">
+<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>新建文件夹</button>
+<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span>删除文件</button>
+<span class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">排序方式<span class="caret"></span></button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#">名称</a></li>
+    <li><a href="#">大小</a></li>
+    <li><a href="#">文件类型</a></li>
+    <li><a href="#">修改日期</a></li>
+  </ul>
+</span>
+</div>
+
+
+<div id="fileLocation" class="container">
+<a href="#">返回</a>
+<a href="#">openstack<span class="glyphicon glyphicon-chevron-right"></span></a>
+<a href="#">a<span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+
+
+<section id="display">
+<div class="container">
+<c:choose>
+	<c:when test="${ !empty param.subDirectoryPath }">
+		<!-- 如果index.jsp有传递fileRelativePath参数,遍历子目录 -->
+		<defined:fetch subDirectoryPath="${ param.subDirectoryPath }" />
+	</c:when>
+	<c:otherwise>
+		<!-- 如果index.jsp没有传递fileRelativePath参数,遍历根目录 -->
+		<defined:fetch />
+	</c:otherwise>
+</c:choose>
+</div>
 </section>
-
-
-<!-- 遍历所有文件名 -->
-<iframe name="iframe_show" src="display.jsp"  id="myiframe" scrolling="no" frameborder="0" width="100%" ></iframe>
 
 
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>

@@ -16,39 +16,44 @@ public class fetchAllFiles extends SimpleTagSupport {
 
 	private PageContext pc;
 	
-	private String currentDirectoryPath;
-	
-	public void setCurrentDirectoryPath(String currentDirectoryPath) {
-		this.currentDirectoryPath = currentDirectoryPath;
+	private String subDirectoryPath;
+
+	public void setSubDirectoryPath(String subDirectoryPath) {
+		this.subDirectoryPath = subDirectoryPath;
 	}
 
 	public void doTag() throws JspException, IOException {
-		//以OpenStack账号为例
-		String directoryPath=null;
-		System.out.println(currentDirectoryPath);
-		//如果currentPath为空,说明地址栏display.jsp没有传递参数,说明是在访问根本目鲈
-		if(currentDirectoryPath==null){
-			//先获取登陆账号名OpenStack
-			String username=(String) pc.getSession().getAttribute("username");
-			//获取/directory的磁盘路径
-			String rootAbsolutePath=pc.getServletContext().getRealPath("/directory");
-			//拼接 ,此时得到OpenStack的磁盘路径
-			directoryPath=rootAbsolutePath+"\\"+username;
+		String directoryAbsolutePath=null;
+		String directoryRelativePath=null;
+		String rootAbsolutePath=(String) pc.getSession().getAttribute("rootAbsolutePath");
+		//保存subDirectoryPath,供UploadServlet使用
+		pc.getSession().setAttribute("subDirectoryPath", subDirectoryPath);
+		//如果subDirectoryPath为空,说明地址栏display.jsp没有传递参数,说明是在访问根本目录
+		System.out.println("fetchAllFiles:30--"+subDirectoryPath);
+		if(subDirectoryPath==null){
+			//从根目录开始遍历
+			directoryAbsolutePath=rootAbsolutePath;
+			directoryRelativePath="";
 		}
-		else
-			directoryPath=currentDirectoryPath;
+		else{
+			//从子目录开始遍历
+			directoryAbsolutePath=rootAbsolutePath+subDirectoryPath;
+			directoryRelativePath=subDirectoryPath;
+		}
+			
+			
 		
+		File file=new File(directoryAbsolutePath);
+		System.out.println("fetchAllFiles:45--"+directoryAbsolutePath);
 		//如果是文件夹才执行操作
-		File directoryFile=new File(directoryPath);
-		if(directoryFile.isDirectory()){
-			//记录当前所在的目录,以便上传文件所使用
-			pc.getSession().setAttribute("currentPath", directoryPath);
+		if(file.isDirectory()){
 			//获取file文件夹下的所有子节点
-			File files[]=directoryFile.listFiles();
+			File files[]=file.listFiles();
 			//循环遍历
 			for(File f:files){
 				//拼接路径名
-				String fileAbsolutePath=directoryPath+"\\"+f.getName();
+				String fileRelativePath=directoryRelativePath+"\\"+f.getName();
+				System.out.println("fetchAllFiles:54--"+fileRelativePath);
 				//截取文件名操作:最终显示在页面上的文件名
 				StringBuilder filename=new StringBuilder(f.getName());
 				if(filename.length()>=10){
@@ -66,8 +71,8 @@ public class fetchAllFiles extends SimpleTagSupport {
 						
 				//输出文件或文件夹
 				pc.getOut().print("<a class='col-md-2' href='#'>");
-				//隐藏域name和value属性值都为fileAbsolutePath
-				pc.getOut().print("<input type='hidden' name=\'"+fileAbsolutePath+"\' value=\'"+fileAbsolutePath+"\'>");
+				//隐藏域name和value属性值都为fileRelativePath
+				pc.getOut().print("<input type='hidden' name=\'"+fileRelativePath+"\' value=\'"+fileRelativePath+"\'>");
 				//title属性 鼠标悬停在图片上会显示该文件名
 				pc.getOut().print("<img src=\'"+src+"\' title=\'"+f.getName()+"\' class='img-responsive'>");
 				//最终显示在页面的文件名

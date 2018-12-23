@@ -13,7 +13,7 @@
         <tag-class>definedJSTL.fetchAllFiles</tag-class>
         <body-content>empty</body-content>
         <attribute>
-        	<name>currentDirectoryPath</name>
+        	<name>subDirectoryPath</name>
         	<required>false</required>
         	<rtexprvalue>true</rtexprvalue>
         	<type>String</type>

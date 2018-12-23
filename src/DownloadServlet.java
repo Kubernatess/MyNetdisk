@@ -22,12 +22,14 @@ public class DownloadServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		//获取请求参数
-		String rootAbsolutePath=request.getParameter("fileAbsolutePath");
+		String fileRelativePath=request.getParameter("fileRelativePath");
 		//提取文件名
-		int index=rootAbsolutePath.lastIndexOf("\\");
-		String filename=rootAbsolutePath.substring(index);
+		int index=fileRelativePath.lastIndexOf("\\");
+		String filename=fileRelativePath.substring(index);
 		//创建输入流
-		InputStream in=new FileInputStream(rootAbsolutePath);
+		String rootAbsolutePath=(String) request.getSession().getAttribute("rootAbsolutePath");
+		System.out.println(rootAbsolutePath+"\\"+fileRelativePath);
+		InputStream in=new FileInputStream(rootAbsolutePath+"\\"+fileRelativePath);
 		//设置MINE类型
 		String type=getServletContext().getMimeType(filename);
 		response.setContentType(type);

@@ -129,7 +129,7 @@ window.onload=function(){
 		
 		//如果count==3表明所有验证通过
 		if((count==3)&&(username!="")&&(password!="")&&(verification!="")){
-			window.location.href="/MyNetdisk/sessionServlet?username="+username;
+			window.location.href="/MyNetdisk/loginServlet?username="+username;
 		}
 	};
 	
