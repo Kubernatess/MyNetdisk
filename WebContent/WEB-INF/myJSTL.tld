@@ -19,5 +19,17 @@
         	<type>String</type>
         </attribute>
     </tag>
+    <tag>
+        <description>Outputs Hello, World</description>
+        <name>list</name>
+        <tag-class>definedJSTL.fetchFilePath</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+        	<name>subDirectoryPath</name>
+        	<required>false</required>
+        	<rtexprvalue>true</rtexprvalue>
+        	<type>String</type>
+        </attribute>
+    </tag>
 </taglib>
 

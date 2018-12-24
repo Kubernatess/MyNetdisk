@@ -75,9 +75,14 @@ public class UploadServlet extends HttpServlet {
 				os.close();	
 			}
 			//文件上传完毕,重定向到首页
-			System.out.println("UploadServlet:77--"+subDirectoryPath);
-			String encodingSubDirectoryPath=URLEncoder.encode(subDirectoryPath);
-			response.sendRedirect("index.jsp?subDirectoryPath="+encodingSubDirectoryPath);
+			if(subDirectoryPath==null){
+				response.sendRedirect("index.jsp");
+			}
+			else{
+				String encodingSubDirectoryPath=URLEncoder.encode(subDirectoryPath);
+				response.sendRedirect("index.jsp?subDirectoryPath="+encodingSubDirectoryPath);
+			}
+			
 		} catch (FileUploadException e) {
 			e.printStackTrace();
 		}

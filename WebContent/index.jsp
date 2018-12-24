@@ -98,9 +98,17 @@
 
 
 <div id="fileLocation" class="container">
-<a href="#">返回</a>
-<a href="#">openstack<span class="glyphicon glyphicon-chevron-right"></span></a>
-<a href="#">a<span class="glyphicon glyphicon-chevron-right"></span></a>
+<button type="button" id="back">返回</button>
+<c:choose>
+	<c:when test="${ !empty param.subDirectoryPath }">
+		<!-- 如果index.jsp有传递subDirectoryPath参数,遍历子目录 -->
+		<defined:list subDirectoryPath="${ param.subDirectoryPath }" />
+	</c:when>
+	<c:otherwise>
+		<!-- 如果index.jsp没有传递subDirectoryPath参数,遍历根目录 -->
+		<defined:list />
+	</c:otherwise>
+</c:choose>
 </div>
 
 
@@ -108,11 +116,9 @@
 <div class="container">
 <c:choose>
 	<c:when test="${ !empty param.subDirectoryPath }">
-		<!-- 如果index.jsp有传递fileRelativePath参数,遍历子目录 -->
 		<defined:fetch subDirectoryPath="${ param.subDirectoryPath }" />
 	</c:when>
 	<c:otherwise>
-		<!-- 如果index.jsp没有传递fileRelativePath参数,遍历根目录 -->
 		<defined:fetch />
 	</c:otherwise>
 </c:choose>

@@ -19,7 +19,7 @@ body{
 	line-height: 30px;
 	vertical-align: middle;
 }
-#fileLocation a:first-child{
+#fileLocation button{
 	margin-right: 20px;
 	color: #000;
 }

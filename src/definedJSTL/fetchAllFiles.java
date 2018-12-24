@@ -29,7 +29,6 @@ public class fetchAllFiles extends SimpleTagSupport {
 		//保存subDirectoryPath,供UploadServlet使用
 		pc.getSession().setAttribute("subDirectoryPath", subDirectoryPath);
 		//如果subDirectoryPath为空,说明地址栏display.jsp没有传递参数,说明是在访问根本目录
-		System.out.println("fetchAllFiles:30--"+subDirectoryPath);
 		if(subDirectoryPath==null){
 			//从根目录开始遍历
 			directoryAbsolutePath=rootAbsolutePath;
@@ -44,7 +43,6 @@ public class fetchAllFiles extends SimpleTagSupport {
 			
 		
 		File file=new File(directoryAbsolutePath);
-		System.out.println("fetchAllFiles:45--"+directoryAbsolutePath);
 		//如果是文件夹才执行操作
 		if(file.isDirectory()){
 			//获取file文件夹下的所有子节点
@@ -53,7 +51,6 @@ public class fetchAllFiles extends SimpleTagSupport {
 			for(File f:files){
 				//拼接路径名
 				String fileRelativePath=directoryRelativePath+"\\"+f.getName();
-				System.out.println("fetchAllFiles:54--"+fileRelativePath);
 				//截取文件名操作:最终显示在页面上的文件名
 				StringBuilder filename=new StringBuilder(f.getName());
 				if(filename.length()>=10){

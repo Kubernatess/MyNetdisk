@@ -2,7 +2,11 @@ var fileRelativePath;
 
 window.onload=function(){
 	//第一次访问index.jsp,需要记录下根目录
-	window.localStorage.setItem('subDirectoryPath',"");
+	var subDirectoryPath=window.localStorage.getItem('subDirectoryPath');
+	if(subDirectoryPath==""){
+		window.localStorage.setItem('subDirectoryPath',"");
+	}
+	
 	
 	//上传文件,提交到/MyNetdisk/upload
 	var btn_upload=document.getElementById("upload");
@@ -66,5 +70,18 @@ window.onload=function(){
 			
 		};
 	}
+	
+	var back=document.getElementById("back");
+	back.onclick=function(){
+		var subDirectoryPath=window.localStorage.getItem("subDirectoryPath");
+		var index=subDirectoryPath.lastIndexOf("\\");		
+		subDirectoryPath=subDirectoryPath.substring(0,index);
+		window.localStorage.setItem('subDirectoryPath',subDirectoryPath);	
+		if(subDirectoryPath=="\\"){
+			subDirectoryPath="";
+		}
+		var encodingSubDirectoryPath=encodeURIComponent(subDirectoryPath);
+		window.location.href="index.jsp?subDirectoryPath="+encodingSubDirectoryPath;
+	};
 	
 }

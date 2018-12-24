@@ -28,7 +28,6 @@ public class DownloadServlet extends HttpServlet {
 		String filename=fileRelativePath.substring(index);
 		//创建输入流
 		String rootAbsolutePath=(String) request.getSession().getAttribute("rootAbsolutePath");
-		System.out.println(rootAbsolutePath+"\\"+fileRelativePath);
 		InputStream in=new FileInputStream(rootAbsolutePath+"\\"+fileRelativePath);
 		//设置MINE类型
 		String type=getServletContext().getMimeType(filename);

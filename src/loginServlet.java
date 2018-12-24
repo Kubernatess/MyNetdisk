@@ -39,7 +39,6 @@ public class loginServlet extends HttpServlet {
 			String rootAbsolutePath=getServletContext().getRealPath("/directory");
 			//拼接 ,此时得到根目录磁盘路径,以便后面拼接相对路径名使用
 			rootAbsolutePath=rootAbsolutePath+"\\"+username;
-			System.out.println("loginServlet--"+rootAbsolutePath);
 			session.setAttribute("rootAbsolutePath",rootAbsolutePath);
 			session.setAttribute("subDirectoryPath","");
 			
