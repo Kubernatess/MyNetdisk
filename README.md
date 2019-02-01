@@ -11,5 +11,4 @@
 文件列表页面和文件上传、下载
   
 ![Image text](https://github.com/Kubernatess/MyNetdisk/blob/master/WebContent/images/screenshot/screenshot3.png)
-
-![Image text](https://github.com/Kubernatess/MyNetdisk/blob/master/WebContent/images/screenshot/screenshot4.png)
+![Image text](https://github.com/Kubernatess/MyNetdisk/blob/master/WebContent/images/screenshot/scrrenshot4.png)
